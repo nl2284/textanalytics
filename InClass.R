@@ -54,8 +54,31 @@ str_split(string=metadata1, pattern="\n")
 
 loc<-str_locate(string=email, pattern="\n\n")
 
-metadata<-str_sub(string=email, start=rep(1, length(email), end=loc[,1]) )
+metadata<-str_sub(string=email, start=1, end=loc[,1] )
 body<-str_sub(string=email, start=loc[,2])
 
+## handout 2
+#1.
+fruit<-c("apple", "banana", "pear", "pinapple")
+str_detect(fruit, "a")
+str_detect(fruit, "^a") # begines with
+str_detect(fruit, "a$")  # $ends with
+str_detect(fruit, "[aeiou]")
+str_detect(fruit, "[a-d]")
+
+##detect a string that starts with "a" and ends with "e"
+str_detect(fruit, "^a[a-z]*e$")
 
 
+##4
+phone=c("212 740 4826", "213-740-4826","222.222.2222", "(213) 740-4826", "121-323-4567356")
+parser="[(]?[0-9]{3}[)]?[ -.][0-9]{3}[ -.][0-9]{4}\\b"
+str_detect(phone, parser)
+
+cat(body[19])
+
+str_extract(string=body, pattern=parser)
+
+##6
+parser_zip<-"[1-9]{5}(-[0-9]{4})?"
+str_extract(string=body, pattern=parser_zip)
